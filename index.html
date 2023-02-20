@@ -117,21 +117,41 @@
         localStorage.setItem('codikasPouGraftike', codeInput.value);
     });
 
+
     runBtn.onclick = () => {
         if (codeInput.value == '') {
             writeResultOnOutput('Ε ρε φίλε πρέπει να γράψεις και κάτι');
             return;
         }
         
-        if (codeInput.value == 'papagianneos') {
-        	window.open('https://papagianneos-game.surge.sh/');
-            return
+        switch (true) {
+        	case codeInput.value == 'papagianneos': // easter egg lol
+        		window.open('https://papagianneos-game.surge.sh/');
+        	    writeResultOnOutput('THE MIGHTY GAME OF PAPAGIANNEOS');
+        	    return
+                
+            case codeInput.value.startsWith('πες('): {
+            	  let message = codeInput.value.replace('πες(\'', '');
+                
+                  message = message.replace('\')', '');
+            	  alert(message);
+                }
+                return
+                
+            case codeInput.value.startsWith('πράξη('): {
+            	 let message = codeInput.value.replace('πες(\'', '');
+                
+                 message = message.replace('\')', '');
+            	 alert(message);
+                 return
+                }
         }
         
         try {
             let result = eval(codeInput.value);
             writeResultOnOutput(String(result));
-        } catch (error) {
+        }
+        catch (error) {
             writeResultOnOutput(String(error));
         }
     }
