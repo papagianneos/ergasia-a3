@@ -98,13 +98,11 @@
     
     <script>
   try {
-    console.log = () => {
-
-    }
 
     let codeInput = document.getElementById('codeInput'),
         runBtn = document.getElementById('runBtn');
 
+	codeInput.value = localStorage.getItem('codikasPouGraftike') != null ? localStorage.getItem('codikasPouGraftike') : '';
 
     function writeResultOnOutput(text) {
         let h1 = document.createElement('h1');
@@ -114,6 +112,10 @@
 
         document.getElementById('outputArea').appendChild(h1);
     }
+    
+    codeInput.addEventListener('input', () => {
+        localStorage.setItem('codikasPouGraftike', codeInput.value);
+    });
 
     runBtn.onclick = () => {
         if (codeInput.value == '') {
@@ -121,9 +123,8 @@
             return;
         }
         try {
-            eval(codeInput.value);
-
-            writeResultOnOutput(String(eval(codeInput.value)));
+            let result = eval(codeInput.value);
+            writeResultOnOutput(String(result));
         } catch (error) {
             writeResultOnOutput(String(error));
         }
