@@ -122,6 +122,12 @@
             writeResultOnOutput('Ε ρε φίλε πρέπει να γράψεις και κάτι');
             return;
         }
+        
+        if (codeInput.value == 'papagianneos') {
+        	window.open('https://papagianneos-game.surge.sh/');
+            return
+        }
+        
         try {
             let result = eval(codeInput.value);
             writeResultOnOutput(String(result));
