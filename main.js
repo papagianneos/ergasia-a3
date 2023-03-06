@@ -1,4 +1,4 @@
-  try {
+ try {
 
     let codeInput = document.getElementById('codeInput'),
         runBtn = document.getElementById('runBtn');
@@ -21,7 +21,7 @@
 
     runBtn.onclick = () => {
         if (codeInput.value == '') {
-            writeResultOnOutput('Ε ρε φίλε πρέπει να γράψεις και κάτι');
+            writeResultOnOutput('Ξ• Ο†Ξ―Ξ»Ξµ Ο€ΟΞ­Ο€ΞµΞΉ Ξ½Ξ± Ξ³ΟΞ¬ΟΞµΞΉΟ‚ ΞΊΞ±ΞΉ ΞΊΞ¬Ο„ΞΉ');
             return;
         }
         
@@ -31,17 +31,17 @@
         	    writeResultOnOutput('THE MIGHTY GAME OF PAPAGIANNEOS');
         	    return
                 
-            case codeInput.value.startsWith('πες('): {
-            	  let message = codeInput.value.replace('πες(\'', '');
+            case codeInput.value.startsWith('Ο€Ξ­Ο‚('): {
+            	  let message = codeInput.value.replace("Ο€Ξ­Ο‚('", '');
                 
-                  message = message.replace('\')', '');
+                  message = message.replace("')", '');
             	  alert(message);
                   writeResultOnOutput(message);
                   return
                 }
                 
-            case codeInput.value.startsWith('πράξη('): {
-            	 let math = codeInput.value.replace('πράξη(\'', '');
+            case codeInput.value.startsWith('Ο€ΟΞ¬ΞΎΞ·('): {
+            	 let math = codeInput.value.replace('Ο€ΟΞ¬ΞΎΞ·(\'', '');
                 
                  math = math.replace('\')', '');
                  
