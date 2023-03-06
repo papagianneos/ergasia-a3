@@ -36,7 +36,6 @@
                 
                   message = message.replace("')", '');
             	  alert(message);
-                  writeResultOnOutput(message);
                   return
                 }
                 
@@ -50,6 +49,14 @@
             	 alert(resultString);
                  writeResultOnOutput(resultString);
                  return
+                }
+
+            case codeInput.value.startsWith('γράψε('): {
+            	  let message = codeInput.value.replace("γράψε('", '');
+                
+                  message = message.replace("')", '');
+                  writeResultOnOutput(message);
+                  return
                 }
         }
         
