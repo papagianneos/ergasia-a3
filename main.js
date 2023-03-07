@@ -91,6 +91,13 @@ try {
                 writeResultOnOutput(message);
                 return
             }
+
+	
+	  case codeInput.value == 'κανα λολακι παιζεις;': {
+		writeResultOnOutput('Φυσικά μπρο μου!')
+		return;
+	  }
+
         }
 
         try {
