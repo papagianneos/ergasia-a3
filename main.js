@@ -41,6 +41,12 @@ try {
 
 
     runBtn.onclick = () => {
+	if (codeInput.value.includes('  ')) codeInput.value = codeInput.value.replace('  ', ' ');
+
+	if (codeInput.value.startsWith(' ')) {
+             codeInput.value = codeInput.value.replace(' ', '');
+	}
+
         if (codeInput.value == '') {
             writeResultOnOutput('Ε φίλε πρέπει να γράψεις και κάτι');
             return;
