@@ -31,16 +31,20 @@
         	    writeResultOnOutput('THE MIGHTY GAME OF PAPAGIANNEOS');
         	    return
                 
-            case codeInput.value.startsWith('πές('): {
-            	  let message = codeInput.value.replace("πές('", '');
+            case codeInput.value.startsWith('πές('): 
+	    case codeInput.value.startsWith('πες('): {
+		  const valueToReplaceCuzYes = codeInput.value.startsWith('πές(\'') ? 'πές(\'' : 'πες(\'';
+            	  let message = codeInput.value.replace(valueToReplaceCuzYes, '');
                 
                   message = message.replace("')", '');
             	  alert(message);
                   return
                 }
                 
-            case codeInput.value.startsWith('πράξη('): {
-            	 let math = codeInput.value.replace('πράξη(\'', '');
+            case codeInput.value.startsWith('πράξη('):
+	    case codeInput.value.startsWith('πραξη('): {
+		 const valueToReplaceCuzYes = codeInput.value.startsWith('πράξη(\'') ? 'πράξη(\'' : 'πραξη(\'';
+            	 let math = codeInput.value.replace(valueToReplaceCuzYes, '');
                 
                  math = math.replace('\')', '');
                  
@@ -51,8 +55,10 @@
                  return
                 }
 
-            case codeInput.value.startsWith('γράψε('): {
-            	  let message = codeInput.value.replace("γράψε('", '');
+            case codeInput.value.startsWith('γράψε('):
+	    case codeInput.value.startsWith('γραψε('): {
+		  const valueToReplaceCuzYes = codeInput.value.startsWith('γράψε(\'') ? 'γράψε(\'' : 'γραψε(\'';
+            	  let message = codeInput.value.replace(valueToReplaceCuzYes, '');
                 
                   message = message.replace("')", '');
                   writeResultOnOutput(message);
