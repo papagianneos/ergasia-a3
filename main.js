@@ -29,23 +29,23 @@ try {
                 if (child) {
                     document.getElementById('outputArea').removeChild(child);
 
-		    if (document.getElementById('outputArea').children.length == 0) breakLoopFlag = true;
+                    if (document.getElementById('outputArea').children.length == 0) breakLoopFlag = true;
                 }
             }
 
-	  if (breakLoopFlag) {
-              clearInterval(checkLoop);
-	  }
+            if (breakLoopFlag) {
+                clearInterval(checkLoop);
+            }
         }, 50);
     }
 
-
+	// Όταν πατηθεί το κουμπί "ΕΚΤΕΛΕΣΗ"
     runBtn.onclick = () => {
-	if (codeInput.value.includes('  ')) codeInput.value = codeInput.value.replace('  ', ' ');
+        if (codeInput.value.includes('  ')) codeInput.value = codeInput.value.replace('  ', ' ');
 
-	if (codeInput.value.startsWith(' ')) {
-             codeInput.value = codeInput.value.replace(' ', '');
-	}
+        if (codeInput.value.startsWith(' ')) {
+            codeInput.value = codeInput.value.replace(' ', '');
+        }
 
         if (codeInput.value == '') {
             writeResultOnOutput('Ε φίλε πρέπει να γράψεις και κάτι');
@@ -92,11 +92,11 @@ try {
                 return
             }
 
-	
-	  case codeInput.value == 'κανα λολακι παιζεις;': {
-		writeResultOnOutput('Φυσικά μπρο μου!')
-		return;
-	  }
+
+            case codeInput.value == 'κανα λολακι παιζεις;': {
+                writeResultOnOutput('Φυσικά μπρο μου!')
+                return;
+            }
 
         }
 
@@ -107,6 +107,13 @@ try {
             writeResultOnOutput(String(error));
         }
     }
+	
+	// Πλήκτρο που τρέχει τον κώδικα
+	window.addEventListener('keydown', (event) => {
+		if (!event.shiftKey && event.keyCode == 13) {
+			runBtn.onclick();
+		}
+	})
 
 
 } catch (error) {
