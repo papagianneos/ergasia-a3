@@ -2,7 +2,8 @@ try {
 
     let codeInput = document.getElementById('codeInput'),
         runBtn = document.getElementById('runBtn'),
-        clearConsoleBtn = document.getElementById('clearConsoleBtn');
+        clearConsoleBtn = document.getElementById('clearConsoleBtn'),
+		darkModeOption = document.getElementById('skotadi');
 
     codeInput.value = localStorage.getItem('codikasPouGraftike') != null ? localStorage.getItem('codikasPouGraftike') : '';
 
@@ -19,6 +20,25 @@ try {
         localStorage.setItem('codikasPouGraftike', codeInput.value);
     });
 
+	const setDarkMode = state => {
+		if (state) { // dark
+			codeInput.style.backgroundColor = 'black';
+			codeInput.style.color = 'green';
+			outputArea.style.backgroundColor = 'black';
+			outputArea.style.color = 'green';
+		}
+		
+		else { // light
+			codeInput.style.backgroundColor = 'white';
+			codeInput.style.color = 'black';
+			outputArea.style.backgroundColor = 'white';
+			outputArea.style.color = 'black';
+		}
+	}
+	setDarkMode(false);
+	
+	// Αν έγινε κλικ στο checkbox
+	darkModeOption.onclick = () => setDarkMode(darkModeOption.checked);
 
     clearConsoleBtn.onclick = () => {
         let breakLoopFlag = false;
@@ -113,7 +133,7 @@ try {
 		if (!event.shiftKey && event.keyCode == 13) {
 			runBtn.onclick();
 		}
-	})
+	});
 
 
 } catch (error) {
