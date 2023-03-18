@@ -3,7 +3,7 @@ try {
     let codeInput = document.getElementById('codeInput'),
         runBtn = document.getElementById('runBtn'),
         clearConsoleBtn = document.getElementById('clearConsoleBtn'),
-		darkModeOption = document.getElementById('skotadi');
+        darkModeOption = document.getElementById('skotadi');
 
     codeInput.value = localStorage.getItem('codikasPouGraftike') != null ? localStorage.getItem('codikasPouGraftike') : '';
 
@@ -20,25 +20,25 @@ try {
         localStorage.setItem('codikasPouGraftike', codeInput.value);
     });
 
-	const setDarkMode = state => {
-		if (state) { // dark
-			codeInput.style.backgroundColor = 'black';
-			codeInput.style.color = 'green';
-			outputArea.style.backgroundColor = 'black';
-			outputArea.style.color = 'green';
-		}
-		
-		else { // light
-			codeInput.style.backgroundColor = 'white';
-			codeInput.style.color = 'black';
-			outputArea.style.backgroundColor = 'white';
-			outputArea.style.color = 'black';
-		}
-	}
-	setDarkMode(false);
-	
-	// Αν έγινε κλικ στο checkbox
-	darkModeOption.onclick = () => setDarkMode(darkModeOption.checked);
+    const setDarkMode = state => {
+        if (state) { // dark
+            codeInput.style.backgroundColor = 'black';
+            codeInput.style.color = 'green';
+            outputArea.style.backgroundColor = 'black';
+            outputArea.style.color = 'green';
+        }
+
+        else { // light
+            codeInput.style.backgroundColor = 'white';
+            codeInput.style.color = 'black';
+            outputArea.style.backgroundColor = 'white';
+            outputArea.style.color = 'black';
+        }
+    }
+    setDarkMode(false);
+
+    // Αν έγινε κλικ στο checkbox
+    darkModeOption.onclick = () => setDarkMode(darkModeOption.checked);
 
     clearConsoleBtn.onclick = () => {
         let breakLoopFlag = false;
@@ -59,19 +59,40 @@ try {
         }, 50);
     }
 
-	// Όταν πατηθεί το κουμπί "ΕΚΤΕΛΕΣΗ"
-    runBtn.onclick = () => {
-        if (codeInput.value.includes('  ')) codeInput.value = codeInput.value.replace('  ', ' ');
+    // Συνάρτηση αφαίρεσης άχρηστων κενών
+    const removeRedundantSpaces = str => {
+        const searchTerm2 = "   ", // Triple spaces.
+            searchTerm = "  ", // Double spaces.
+            replaceTerm = " "; // Single space.
+        let tmpStr = str,
+            index = tmpStr.indexOf(searchTerm);
 
-        if (codeInput.value.startsWith(' ')) {
-            codeInput.value = codeInput.value.replace(' ', '');
+        while (index >= 0) {
+            tmpStr = tmpStr.replace(searchTerm, replaceTerm);
+            index = tmpStr.indexOf(searchTerm);
         }
+
+        return tmpStr;
+    };
+
+    // Όταν πατηθεί το κουμπί "ΕΚΤΕΛΕΣΗ"
+    runBtn.onclick = () => {
+
+        // -------------------------------------------------------------------------------------------------------------------
+        // BUG FIX: Βγάλε τα άχρηστα κενά του χρήστη
+        // -------------------------------------------------------------------------------------------------------------------
+        codeInput.value = removeRedundantSpaces(codeInput.value);
+        if (codeInput.value.includes('\n')) {
+            codeInput.value = codeInput.value.replace(/^(?=\n)$|^\s*|\s*$|\n\n+/gm, ""); // RegEx usage. (\n είναι το enter)
+        }
+        // -------------------------------------------------------------------------------------------------------------------
 
         if (codeInput.value == '') {
             writeResultOnOutput('Ε φίλε πρέπει να γράψεις και κάτι');
             return;
         }
 
+        // Εντολές.
         switch (true) {
             case codeInput.value == 'papagianneos': // easter egg lol
                 window.open('https://papagianneos-game.surge.sh/');
@@ -115,6 +136,24 @@ try {
 
             case codeInput.value == 'κανα λολακι παιζεις;': {
                 writeResultOnOutput('Φυσικά μπρο μου!')
+
+                let tempIframe = document.createElement('iframe');
+
+                tempIframe.src = 'https://www.op.gg/summoners/eune/fapa%20ksapla%20mixa';
+                tempIframe.style.border = 'none';
+                tempIframe.style.width = '100%';
+                tempIframe.style.height = '1000px';
+                tempIframe.id = 'coolLolakiStatusLOL';
+                tempIframe.style.zIndex = '999';
+                document.getElementById('pateras').style.display = 'none';
+                document.body.appendChild(tempIframe);
+
+                window.addEventListener('keydown', (event) => {
+                    if (event.keyCode == 27 && document.getElementById('coolLolakiStatusLOL')) {
+                        document.body.removeChild(tempIframe);
+                        document.getElementById('pateras').style.display = '';
+                    }
+                });
                 return;
             }
 
@@ -127,13 +166,13 @@ try {
             writeResultOnOutput(String(error));
         }
     }
-	
-	// Πλήκτρο που τρέχει τον κώδικα
-	window.addEventListener('keydown', (event) => {
-		if (!event.shiftKey && event.keyCode == 13) {
-			runBtn.onclick();
-		}
-	});
+
+    // Πλήκτρο που τρέχει τον κώδικα
+    window.addEventListener('keydown', (event) => {
+        if (!event.shiftKey && event.keyCode == 13) {
+            runBtn.onclick();
+        }
+    });
 
 
 } catch (error) {
