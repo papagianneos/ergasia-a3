@@ -74,7 +74,42 @@ try {
 
         return tmpStr;
     };
+	
+	let buttonsHolder = document.createElement('div');
+	const createButton = (onoma, type) => {
+		let button = document.createElement('button');
+		
+		button.appendChild(document.createTextNode(onoma)); // όνομα του κουμπιού
+		button.style.width = '30.3%';
+		button.style.margin = '2px';
+		
+		button.onclick = () => {
+			let message = type == 'math' ? 'γράψε την πράξη σου εδώ χωρίς να βγάλεις τα αυτάκια' : 'γράψε το μήνυμα σου εδώ χωρίς να βγάλεις τα αυτάκια';
+			codeInput.value = `${onoma}('${message}')`
+		}
+		
+		buttonsHolder.appendChild(button);
+	}
+	
+	// Εντολές
+	let entolesMas = [
+		{ name: 'πές', type: 'text'},
+		{ name: 'γράψε', type: 'text'},
+		{ name: 'πράξη', type: 'math'},
+	];
+	
+	for (var entolh of entolesMas) {
+		createButton(entolh.name, entolh.type)
+	}
 
+	document.getElementsByTagName('div')[2].appendChild(buttonsHolder);
+	// --------------------------------------------------------------------------------------------------------------------------------------
+	
+	let developersLmao = document.createElement('h3');
+	developersLmao.appendChild(document.createTextNode('Σταύρος Τζαβάρας, Μιχάλης Χατσιούλης, Σωτήρης Παπαγιάννης'));
+	document.getElementsByTagName('div')[2].appendChild(developersLmao);
+	
+	
     // Όταν πατηθεί το κουμπί "ΕΚΤΕΛΕΣΗ"
     runBtn.onclick = () => {
 
