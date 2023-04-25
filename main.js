@@ -110,7 +110,7 @@ try {
 	document.getElementsByTagName('div')[2].appendChild(developersLmao);
 
 	let socialSchoolCreditLmao = document.createElement('h3');
-	socialSchoolCreditLmao.appendChild(document.createTextNode('3ο ΓΕΛ ΒΕΡΟΙΑΣ - ΣΧΟΛΙΚΟ ΕΤΟΣ 2022 - 23'));
+	socialSchoolCreditLmao.innerHTML = '<lol style="font-size:18px;">3ο ΓΕΛ ΒΕΡΟΙΑΣ</lol> - ΣΧΟΛΙΚΟ ΕΤΟΣ 2022 - 23';
 	document.getElementsByTagName('div')[2].appendChild(socialSchoolCreditLmao);
 	
 	
