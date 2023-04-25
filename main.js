@@ -108,6 +108,10 @@ try {
 	let developersLmao = document.createElement('h3');
 	developersLmao.appendChild(document.createTextNode('Σταύρος Τζαβάρας, Μιχάλης Χατσιούλης, Σωτήρης Παπαγιάννης'));
 	document.getElementsByTagName('div')[2].appendChild(developersLmao);
+
+	let socialSchoolCreditLmao = document.createElement('h3');
+	socialSchoolCreditLmao.appendChild(document.createTextNode('3ο ΓΕΛ ΒΕΡΟΙΑΣ - ΣΧΟΛΙΚΟ ΕΤΟΣ 2022 - 23'));
+	document.getElementsByTagName('div')[2].appendChild(socialSchoolCreditLmao);
 	
 	
     // Όταν πατηθεί το κουμπί "ΕΚΤΕΛΕΣΗ"
